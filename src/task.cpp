@@ -4,12 +4,26 @@
 
 template <class T>
 Task<T>::Task(int priority, std::string description, bool repeat, T data) {
+    this->priority = priority;
+    this->description = description;
+    this->repeat = repeat;
+    this->data = data;
 
+    // Pointers 
+    this->prev = NULL;
+    this->next = NULL;
 }
 
 template <class T>
 Task<T>::Task(const Task<T>& toCopy) {
+    this->priority = toCopy.getPriority();
+    this->description = toCopy.getDescription();
+    this->repeat = toCopy.getRepeat();
+    this->data = toCopy.getData();
 
+    // Pointers 
+    this->prev = NULL;
+    this->next = NULL;
 }
 
 template <class T>
