@@ -26,11 +26,11 @@ template <typename T>
 bool History<T>::addTask(const Task<T>* toAdd) {
     if (toAdd != NULL) {
         Task<T>* newTask = new Task<T>(
-            toAdd->getPriority(),
-            toAdd->getDescription(),
-            toAdd->getRepeat(),
-            toAdd->getData()
-        );
+                toAdd->getPriority(),
+                toAdd->getDescription(),
+                toAdd->getRepeat(),
+                toAdd->getData()
+            );
 
         newTask->setNext(this->head);
         this->head = newTask;
@@ -38,6 +38,7 @@ bool History<T>::addTask(const Task<T>* toAdd) {
         this->numTasks++;
         return true;
     }
+
     return false;
 }
 
@@ -58,51 +59,36 @@ Task<T>* History<T>::removeTask() {
 
 template <typename T>
 std::string History<T>::undoLatest() {
-   Task<T>* task = removeTask();
-   if (task == NULL) {
-       return "";
-   }
-   
-   std::string result;
-   result += "Task: ";
-   result += task->getDescription();
-   result += "  Priority: ";
-   
-   std::stringstream ss;
-   ss << task->getPriority();
-   result += ss.str();
-   
-   result += "  Data: ";
-   result += task->getData();
-   result += "  UNDID\n";
-   
-   delete task;
-   return result;
+    Task<T>* task = removeTask();
+    if (task == NULL) {
+        return "";
+    }
+    
+    std::string result;
+    std::stringstream ss;
+
+    ss << "Task: " << task->getDescription() << " Priority: ";
+    ss << task->getPriority() << " Data: " << task->getData() << " UNDID\n";
+    
+    delete task;
+    return ss.str();
 }
 
 template <typename T>
 std::string History<T>::doTasks() {
-   std::string result;
+    std::string result;
+    std::stringstream ss;
+    
+    while (this->head != NULL) {
+        Task<T>* task = removeTask();
+        
+        ss << "Task: " << task->getDescription() << " Priority: ";
+        ss << task->getPriority() << " Data: " << task->getData() << " UNDID\n";
+
+        delete task;
+    }
    
-   while (this->head != NULL) {
-       Task<T>* task = removeTask();
-       
-       result += "Task: ";
-       result += task->getDescription();
-       result += "  Priority: ";
-       
-       std::stringstream ss;
-       ss << task->getPriority();
-       result += ss.str();
-       
-       result += "  Data: ";
-       result += task->getData();
-       result += "  UNDID\n";
-       
-       delete task;
-   }
-   
-   return result;
+   return ss.str();
 }
 
 #endif
