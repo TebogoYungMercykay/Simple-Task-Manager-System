@@ -4,7 +4,7 @@
 
 template <class T>
 List<T>::List() {
-
+    this->head = NULL;
 }
 
 template <class T>
@@ -14,7 +14,7 @@ List<T>::~List() {
 
 template <class T>
 Task<T>* List<T>::getHead() {
-    return NULL;
+    return this->head;
 }
 
 #endif
