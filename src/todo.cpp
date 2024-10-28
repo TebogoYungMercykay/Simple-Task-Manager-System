@@ -10,16 +10,15 @@ Todo<T>::Todo() : List<T>() {
 
 template <typename T>
 Todo<T>::~Todo() {
-    if (this->head != NULL) {
-        Task<T>* doDelete = NULL;
-        for (Task<T>* current = this->head; current != NULL; current = doDelete) {
-            doDelete = current->next;
-            delete current;
-        }
-
-        this->head = NULL;
-        this->tail = NULL;
+    Task<T>* current = this->head;
+    while (current != NULL) {
+        Task<T>* next = current->next;
+        delete current;
+        current = next;
     }
+
+    this->head = NULL;
+    this->tail = NULL;
 }
 
 template <typename T>
@@ -81,7 +80,7 @@ bool Todo<T>::removeTask(Task<T>* toRemove) {
 template <typename T>
 Task<T>* Todo<T>::findTask(int priority) {
     for (Task<T>* current = this->head; current != NULL; current = current->next) {
-        if (current->getPriority() == description) {
+        if (current->getPriority() == priority) {
             return current;
         }
     }
