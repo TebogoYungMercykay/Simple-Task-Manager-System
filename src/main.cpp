@@ -13,8 +13,8 @@ int main() {
     // testTask();
     // testTodo();
     // testWeekly();
-    testPriority();
-    // testHistory();
+    // testPriority();
+    testHistory();
     // testTaskManager();
 
     return 0;
@@ -55,7 +55,7 @@ void testTodo() {
 
     Todo<int> myTodo;
 
-    std::cout << "Tail: " << myTodo.getHead() << " - " << " Head: " << myTodo.getTail() << std::endl;
+    std::cout << "Head: " << myTodo.getHead() << " - " << " Tail: " << myTodo.getTail() << std::endl;
     Task<int>* myTask1 = myTodo.findTask(1);
     std::cout << ((myTask1) ? myTask1->getDescription() : "NULL") << std::endl;
     Task<int>* myTask2 = myTodo.findTask("Task 1");
@@ -63,7 +63,7 @@ void testTodo() {
     std::cout << myTodo.doTasks() << std::endl;
 
     myTodo.addTask(&task1);
-    std::cout << "Tail: " << myTodo.getHead() << " - " << " Head: " << myTodo.getTail() << std::endl;
+    std::cout << "Head: " << myTodo.getHead() << " - " << " Tail: " << myTodo.getTail() << std::endl;
     myTask1 = myTodo.findTask(1);
     std::cout << ((myTask1) ? myTask1->getDescription() : "NULL") << std::endl;
     myTask2 = myTodo.findTask("Task 1");
@@ -71,16 +71,16 @@ void testTodo() {
     std::cout << myTodo.doTasks() << std::endl;
 
     myTodo.addTask(&task2);
-    std::cout << "Tail: " << myTodo.getHead() << " - " << " Head: " << myTodo.getTail() << std::endl;
+    std::cout << "Head: " << myTodo.getHead() << " - " << " Tail: " << myTodo.getTail() << std::endl;
     std::cout << myTodo.doTasks() << std::endl;
 
     myTodo.addTask(&task3);
     myTodo.addTask(&task4);
-    std::cout << "Tail: " << myTodo.getHead() << " - " << " Head: " << myTodo.getTail() << std::endl;
+    std::cout << "Head: " << myTodo.getHead() << " - " << " Tail: " << myTodo.getTail() << std::endl;
     std::cout << myTodo.doTasks() << std::endl;
 
     myTodo.addTask(&task5);
-    std::cout << "Tail: " << myTodo.getHead() << " - " << " Head: " << myTodo.getTail() << std::endl;
+    std::cout << "Head: " << myTodo.getHead() << " - " << " Tail: " << myTodo.getTail() << std::endl;
     myTask1 = myTodo.findTask(1);
     std::cout << ((myTask1) ? myTask1->getDescription() : "NULL") << std::endl;
     myTask2 = myTodo.findTask("Task 5");
@@ -166,24 +166,24 @@ void testWeekly() {
 
     WeeklyTasks<int> myWeeklyTasks;
 
-    std::cout << "Tail: " << myWeeklyTasks.getHead() << " - " << " Head: " << myWeeklyTasks.getTail() << std::endl;
+    std::cout << "Head: " << myWeeklyTasks.getHead() << " - " << " Tail: " << myWeeklyTasks.getTail() << std::endl;
     std::cout << myWeeklyTasks.doTasks(2) << std::endl;
 
     myWeeklyTasks.addTask(&task1);
-    std::cout << "Tail: " << myWeeklyTasks.getHead() << " - " << " Head: " << myWeeklyTasks.getTail() << std::endl;
+    std::cout << "Head: " << myWeeklyTasks.getHead() << " - " << " Tail: " << myWeeklyTasks.getTail() << std::endl;
     std::cout << myWeeklyTasks.doTasks(2) << std::endl;
 
     myWeeklyTasks.addTask(&task2);
-    std::cout << "Tail: " << myWeeklyTasks.getHead() << " - " << " Head: " << myWeeklyTasks.getTail() << std::endl;
+    std::cout << "Head: " << myWeeklyTasks.getHead() << " - " << " Tail: " << myWeeklyTasks.getTail() << std::endl;
     std::cout << myWeeklyTasks.doTasks(2) << std::endl;
 
     myWeeklyTasks.addTask(&task3);
     myWeeklyTasks.addTask(&task4);
-    std::cout << "Tail: " << myWeeklyTasks.getHead() << " - " << " Head: " << myWeeklyTasks.getTail() << std::endl;
+    std::cout << "Head: " << myWeeklyTasks.getHead() << " - " << " Tail: " << myWeeklyTasks.getTail() << std::endl;
     std::cout << myWeeklyTasks.doTasks(2) << std::endl;
 
     myWeeklyTasks.addTask(&task5);
-    std::cout << "Tail: " << myWeeklyTasks.getHead() << " - " << " Head: " << myWeeklyTasks.getTail() << std::endl;
+    std::cout << "Head: " << myWeeklyTasks.getHead() << " - " << " Tail: " << myWeeklyTasks.getTail() << std::endl;
     std::cout << myWeeklyTasks.doTasks(2) << std::endl;
 
     std::cout << "\n=== Now Checking Structure ===\n" << std::endl;
@@ -273,24 +273,24 @@ void testPriority() {
 
     PriorityList<int> myPriorityList;
 
-    std::cout << "Tail: " << myPriorityList.getHead() << " - " << " Head: " << myPriorityList.getTail() << std::endl;
+    std::cout << "Head: " << myPriorityList.getHead() << " - " << " Tail: " << myPriorityList.getTail() << std::endl;
     std::cout << "Size: " << myPriorityList.getNumTasks() << std::endl;
     std::cout << myPriorityList.doNTasks(2) << std::endl;
 
     myPriorityList.addTask(&task1);
-    std::cout << "Tail: " << myPriorityList.getHead() << " - " << " Head: " << myPriorityList.getTail() << std::endl;
+    std::cout << "Head: " << myPriorityList.getHead() << " - " << " Tail: " << myPriorityList.getTail() << std::endl;
     std::cout << "Size: " << myPriorityList.getNumTasks() << std::endl;
     std::cout << myPriorityList.doNTasks(2) << std::endl;
 
     myPriorityList.addTask(&task2);
     myPriorityList.addTask(&task3);
-    std::cout << "Tail: " << myPriorityList.getHead() << " - " << " Head: " << myPriorityList.getTail() << std::endl;
+    std::cout << "Head: " << myPriorityList.getHead() << " - " << " Tail: " << myPriorityList.getTail() << std::endl;
     std::cout << "Size: " << myPriorityList.getNumTasks() << std::endl;
     std::cout << myPriorityList.doNTasks(2) << std::endl;
 
     myPriorityList.addTask(&task4);
     myPriorityList.addTask(&task5);
-    std::cout << "Tail: " << myPriorityList.getHead() << " - " << " Head: " << myPriorityList.getTail() << std::endl;
+    std::cout << "Head: " << myPriorityList.getHead() << " - " << " Tail: " << myPriorityList.getTail() << std::endl;
     std::cout << "Size: " << myPriorityList.getNumTasks() << std::endl;
     std::cout << myPriorityList.doNTasks(2) << std::endl;
 
@@ -299,7 +299,7 @@ void testPriority() {
     myPriorityList.addTask(&task3);
     myPriorityList.addTask(&task4);
     myPriorityList.addTask(&task5);
-    std::cout << "Tail: " << myPriorityList.getHead() << " - " << " Head: " << myPriorityList.getTail() << std::endl;
+    std::cout << "Head: " << myPriorityList.getHead() << " - " << " Tail: " << myPriorityList.getTail() << std::endl;
     std::cout << "Size: " << myPriorityList.getNumTasks() << std::endl;
     std::cout << myPriorityList.doNTasks(2) << std::endl;
 
@@ -314,39 +314,92 @@ void testPriority() {
     std::cout << "\n=== Now Testing Delete ===\n" << std::endl;
 
     myPriorityList.removeTask();
-    std::cout << "Tail: " << myPriorityList.getHead() << " - " << " Head: " << myPriorityList.getTail() << std::endl;
+    std::cout << "Head: " << myPriorityList.getHead() << " - " << " Tail: " << myPriorityList.getTail() << std::endl;
     std::cout << "Size: " << myPriorityList.getNumTasks() << std::endl;
 
     myPriorityList.removeTask();
-    std::cout << "Tail: " << myPriorityList.getHead() << " - " << " Head: " << myPriorityList.getTail() << std::endl;
+    std::cout << "Head: " << myPriorityList.getHead() << " - " << " Tail: " << myPriorityList.getTail() << std::endl;
     std::cout << "Size: " << myPriorityList.getNumTasks() << std::endl;
 
     myPriorityList.addTask(&task1);
     myPriorityList.addTask(&task2);
     myPriorityList.addTask(&task4);
     myPriorityList.removeTask();
-    std::cout << "Tail: " << myPriorityList.getHead() << " - " << " Head: " << myPriorityList.getTail() << std::endl;
+    std::cout << "Head: " << myPriorityList.getHead() << " - " << " Tail: " << myPriorityList.getTail() << std::endl;
     std::cout << "Size: " << myPriorityList.getNumTasks() << std::endl;
     std::cout << myPriorityList.doTasks() << std::endl;
 
     myPriorityList.removeTask();
-    std::cout << "Tail: " << myPriorityList.getHead() << " - " << " Head: " << myPriorityList.getTail() << std::endl;
+    std::cout << "Head: " << myPriorityList.getHead() << " - " << " Tail: " << myPriorityList.getTail() << std::endl;
     std::cout << "Size: " << myPriorityList.getNumTasks() << std::endl;
 }
 
 void testHistory() {
-    TaskManager<std::string> taskManager("tasks.txt");
+    std::cout << "\n=== Testing The Basics ===\n" << std::endl;
+    Task<int> task1(1, "Task 1", false, 23);
+    Task<int> task2(2, "Task 2", true, 33);
+    Task<int> task3(3, "Task 3", false, 43);
+    Task<int> task4(4, "Task 4", true, 23);
+    Task<int> task5(5, "Task 5", false, 23);
 
-    History<std::string>* history = taskManager.getHistory();
-    Task<std::string>* current = history->getHead();
+    History<int> myHistory;
 
-    current = history->getHead();
-    std::cout << "History:" << std::endl;
-    while (current != NULL) {
-        std::cout << "Priority: " << current->getPriority() << ", Description: " << current->getDescription() << std::endl;
-        current = current->getNext();
-        if (current == history->getHead()) break;
-    }
+    std::cout << "Head: " << myHistory.getHead() << std::endl;
+    std::cout << myHistory.undoLatest() << std::endl;
+
+    myHistory.addTask(&task1);
+    std::cout << "Head: " << myHistory.getHead() << std::endl;
+    std::cout << myHistory.undoLatest() << std::endl;
+
+    myHistory.addTask(&task2);
+    myHistory.addTask(&task3);
+    std::cout << "Head: " << myHistory.getHead() << std::endl;
+    std::cout << myHistory.undoLatest() << std::endl;
+
+    myHistory.addTask(&task4);
+    myHistory.addTask(&task5);
+    std::cout << "Head: " << myHistory.getHead() << std::endl;
+    std::cout << myHistory.undoLatest() << std::endl;
+
+    myHistory.addTask(&task1);
+    myHistory.addTask(&task2);
+    myHistory.addTask(&task3);
+    myHistory.addTask(&task4);
+    myHistory.addTask(&task5);
+    std::cout << "Head: " << myHistory.getHead() << std::endl;
+    std::cout << myHistory.undoLatest() << std::endl;
+
+    std::cout << "\n=== Now Checking Structure ===\n" << std::endl;
+
+    Task<int>* head = myHistory.getHead();
+
+    printTask(head, true);
+
+    std::cout << "\n=== Now Testing Delete ===\n" << std::endl;
+
+    Task<int>* toDelete = myHistory.removeTask();
+    std::cout << "Head: " << myHistory.getHead() << std::endl;
+    delete toDelete;
+    toDelete = NULL;
+
+    toDelete = myHistory.removeTask();
+    delete toDelete;
+    toDelete = NULL;
+    std::cout << "Head: " << myHistory.getHead() << std::endl;
+
+    myHistory.addTask(&task1);
+    myHistory.addTask(&task2);
+    myHistory.addTask(&task4);
+    toDelete = myHistory.removeTask();
+    delete toDelete;
+    toDelete = NULL;
+    std::cout << "Head: " << myHistory.getHead() << std::endl;
+    std::cout << myHistory.doTasks() << std::endl;
+
+    toDelete = myHistory.removeTask();
+    delete toDelete;
+    toDelete = NULL;
+    std::cout << "Head: " << myHistory.getHead() << std::endl;
 }
 
 void testTaskManager() {
