@@ -11,18 +11,14 @@ Todo<T>::Todo() : List<T>() {
 template <typename T>
 Todo<T>::~Todo() {
     if (this->head != NULL) {
-        Task<T>* current = this->head;
-        while (current != NULL) {
-            Task<T>* nextTask = current->next;
+        Task<T>* nextTask = NULL;
+        for (Task<T>* current = this->head; current != NULL; current = nextTask) {
+            nextTask = current->next;
             delete current;
-
-            current = nextTask;
-
-            if (current == this->head) {
-                break;
-            }
         }
+
         this->head = NULL;
+        this->tail = NULL;
     }
 }
 
