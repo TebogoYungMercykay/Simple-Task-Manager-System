@@ -1,5 +1,6 @@
 #ifndef TASK_CPP
 #define TASK_CPP
+
 #include "task.h"
 
 template <class T>
