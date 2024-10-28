@@ -45,6 +45,23 @@ void testTask() {
     std::cout << "Tasks Equal: " << ((task3 == task5) ? "True" : "False") << std::endl << std::endl;
 }
 
+void printTask(Task<int>* task, bool moreLines) {
+    if (task == NULL) {
+        std::cout << "Task is NULL" << std::endl;
+        return;
+    } else {
+        std::string prevDescription = (task->getPrev() != NULL) ? task->getPrev()->getDescription() : "NULL";
+        std::string currDescription = task->getDescription();
+        std::string nextDescription = (task->getNext() != NULL) ? task->getNext()->getDescription() : "NULL";
+
+        std::cout << prevDescription << " -> " << currDescription << " -> " << nextDescription << std::endl;
+    }
+
+    if (moreLines) {
+        std::cout << std::endl;
+    }
+}
+
 void testPriority() {
     TaskManager<std::string> taskManager("tasks.txt");
 
