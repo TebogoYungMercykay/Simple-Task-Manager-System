@@ -14,7 +14,7 @@ WeeklyTasks<T>::~WeeklyTasks() {
     if (this->head != NULL) {
         Task<T>* current = this->head;
         do {
-            Task<T>* nextTask = current->next;
+            Task<T>* nextTask = current->getNext();
             delete current;
             current = nextTask;
         } while (current != this->head);
@@ -39,29 +39,47 @@ template <typename T>
 bool WeeklyTasks<T>::addTask(const Task<T>* toAdd) {
     if (toAdd != NULL) {
         Task<T>* newTask = new Task<T>(
-                toAdd->getPriority(),
-                toAdd->getDescription(),
-                toAdd->getRepeat(),
-                toAdd->getData()
-            );
+            toAdd->getPriority(),
+            toAdd->getDescription(),
+            toAdd->getRepeat(),
+            toAdd->getData()
+        );
 
         if (this->head == NULL) {
             this->head = newTask;
             this->tail = newTask;
-            newTask->next = newTask;
-            newTask->prev = newTask;
+            newTask->setNext(newTask);
+            newTask->setPrev(newTask);
         } else {
-            newTask->next = this->head;
-            newTask->prev = this->tail;
-            this->tail->next = newTask;
-            this->head->prev = newTask;
-            this->tail = newTask;
+            Task<T>* current = this->head;
+            do {
+                if (newTask->getDescription() <= current->getDescription()) {
+                    newTask->setNext(current);
+                    newTask->setPrev(current->getPrev());
+                    current->prev->setNext(newTask);
+                    current->setPrev(newTask);
+                    
+                    if (current == this->head) {
+                        this->head = newTask;
+                    }
+                    break;
+                }
+                current = current->getNext();
+                
+                if (current == this->head) {
+                    newTask->setNext(this->head);
+                    newTask->setPrev(this->tail);
+                    this->tail->setNext(newTask);
+                    this->head->setPrev(newTask);
+                    this->tail = newTask;
+                    break;
+                }
+            } while (true);
         }
 
         this->numTasks++;
         return true;
     }
-
     return false;
 }
 
@@ -72,37 +90,28 @@ bool WeeklyTasks<T>::removeTask(Task<T>* toRemove) {
     }
 
     Task<T>* current = this->head;
-
     do {
         if (current == toRemove) {
-            if (current->prev != NULL) {
-                current->prev->next = current->next;
-            }
-            if (current->next != NULL) {
-                current->next->prev = current->prev;
-            }
-
-            if (current == this->head) {
-                this->head = current->next;
-            }
-            if (current == this->tail) {
-                this->tail = current->prev;
-            }
-
-            if (this->head == current) {
+            if (this->numTasks == 1) {
                 this->head = NULL;
                 this->tail = NULL;
             } else {
-                this->head->prev = this->tail;
-                this->tail->next = this->head;
+                current->prev->setNext(current->next);
+                current->next->setPrev(current->getPrev());
+                
+                if (current == this->head) {
+                    this->head = current->getNext();
+                }
+                if (current == this->tail) {
+                    this->tail = current->getPrev();
+                }
             }
-
-            this->numTasks++;
+            
             delete current;
+            this->numTasks--;
             return true;
         }
-
-        current = current->next;
+        current = current->getNext();
     } while (current != this->head);
 
     return false;
@@ -110,25 +119,31 @@ bool WeeklyTasks<T>::removeTask(Task<T>* toRemove) {
 
 template <typename T>
 std::string WeeklyTasks<T>::doTasks() {
-    std::string result = "";
-    for (Task<T>* current = this->head; current != NULL; current = current->next) {
-        result += "Task: " + current->getDescription() + " Data: " +  current->getData() + " COMPLETED\n";
-
-        if (current->next == this->head) {
-            break;
-        }
+    if (this->head == NULL) {
+        return "";
     }
+    
+    std::string result = "";
+    Task<T>* current = this->head;
+    do {
+        result += "Task: " + current->getDescription() + " Data: " + current->getData() + " COMPLETED\n";
+        current = current->getNext();
+    } while (current != this->head);
 
     return result;
 }
 
 template <typename T>
-std::string WeeklyTasks<T>::doTasks(int repitions) {
+std::string WeeklyTasks<T>::doTasks(int repetitions) {
+    if (repetitions <= 0 || this->head == NULL) {
+        return "";
+    }
+    
     std::string result = "";
-    for (int k = 0; k < repitions; k++) {
+    for (int i = 0; i < repetitions; i++) {
         result += this->doTasks();
     }
-
+    
     return result;
 }
 
