@@ -7,11 +7,12 @@ void testWeekly();
 void testPriority();
 void testHistory();
 void testTaskManager();
+void printTask(Task<int>* task, bool moreLines = false);
 
 int main() {
     // testTask();
-    testTodo();
-    // testWeekly();
+    // testTodo();
+    testWeekly();
     // testPriority();
     // testHistory();
     // testTaskManager();
@@ -39,57 +40,9 @@ void testTask() {
     Task<int> task4(4, "Task 4", false, 23);
     Task<int> task5(4, "Task 4", false, 23);
 
-    std::cout << "Tasks Equal: " << ((task1 == task2) ? "True" : "False") << std::endl;
-    std::cout << "Tasks Equal: " << ((task4 == task5) ? "True" : "False") << std::endl;
-    std::cout << "Tasks Equal: " << ((task3 == task5) ? "True" : "False") << std::endl;
-}
-
-void testTodo() {
-    Task<int> task1(1, "Task 1", false, 23);
-    Task<int> task2(2, "Task 2", true, 33);
-    Task<int> task3(3, "Task 3", false, 43);
-    Task<int> task4(4, "Task 4", false, 23);
-    Task<int> task5(4, "Task 4", false, 23);
-
-    Todo<int> myTodo;
-
-    std::cout << "Tail: " << myTodo.getHead() << " - " << " Head: " << myTodo.getTail() << std::endl;
-    std::cout << myTodo.doTasks() << std::endl;
-
-    myTodo.addTask(&task1);
-    std::cout << "Tail: " << myTodo.getHead() << " - " << " Head: " << myTodo.getTail() << std::endl;
-    std::cout << myTodo.doTasks() << std::endl;
-
-    myTodo.addTask(&task2);
-    std::cout << "Tail: " << myTodo.getHead() << " - " << " Head: " << myTodo.getTail() << std::endl;
-    std::cout << myTodo.doTasks() << std::endl;
-
-    myTodo.addTask(&task3);
-    myTodo.addTask(&task4);
-    std::cout << "Tail: " << myTodo.getHead() << " - " << " Head: " << myTodo.getTail() << std::endl;
-    std::cout << myTodo.doTasks() << std::endl;
-
-    myTodo.addTask(&task5);
-    std::cout << "Tail: " << myTodo.getHead() << " - " << " Head: " << myTodo.getTail() << std::endl;
-    std::cout << myTodo.doTasks() << std::endl;
-
-    myTodo.addTask(&task5);
-    std::cout << "Tail: " << myTodo.getHead() << " - " << " Head: " << myTodo.getTail() << std::endl;
-    std::cout << myTodo.doTasks() << std::endl;
-}
-
-void testWeekly() {
-    TaskManager<std::string> taskManager("tasks.txt");
-
-    WeeklyTasks<std::string>* weekly = taskManager.getWeekly();
-    Task<std::string>* current = weekly->getHead();
-
-    std::cout << "Weekly Tasks:" << std::endl;
-    while (current != NULL) {
-        std::cout << "Priority: " << current->getPriority() << ", Description: " << current->getDescription() << std::endl;
-        current = current->getNext();
-        if (current == weekly->getHead()) break;
-    }
+    std::cout << "Tasks Equal: " << ((task1 == task2) ? "True" : "False") << std::endl << std::endl;
+    std::cout << "Tasks Equal: " << ((task4 == task5) ? "True" : "False") << std::endl << std::endl;
+    std::cout << "Tasks Equal: " << ((task3 == task5) ? "True" : "False") << std::endl << std::endl;
 }
 
 void testPriority() {
