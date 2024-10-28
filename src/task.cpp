@@ -33,32 +33,32 @@ Task<T>::~Task() {
 }
 
 template <typename T>
-int Task<T>::getPriority() {
+int Task<T>::getPriority() const {
     return this->priority;
 }
 
 template <typename T>
-std::string Task<T>::getDescription() {
+std::string Task<T>::getDescription() const {
     return this->description;
 }
 
 template <typename T>
-bool Task<T>::getRepeat() {
+bool Task<T>::getRepeat() const {
     return this->repeat;
 }
 
 template <typename T>
-T Task<T>::getData() {
+T Task<T>::getData() const {
     return this->data;
 }
 
 template <typename T>
-Task<T>* Task<T>::getNext() {
+Task<T>* Task<T>::getNext() const {
     return this->next;
 }
 
 template <typename T>
-Task<T>* Task<T>::getPrev() {
+Task<T>* Task<T>::getPrev() const {
     return this->prev;
 }
 
