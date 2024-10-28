@@ -33,42 +33,44 @@ Task<T>::~Task() {
 
 template <class T>
 int Task<T>::getPriority() {
-    return 0;
+    return this->priority;
 }
 
 template <class T>
 std::string Task<T>::getDescription() {
-    return "";
+    return this->description;
 }
 
 template <class T>
 bool Task<T>::getRepeat() {
-    return false;
+    return this->repeat;
 }
 
 template <class T>
 T Task<T>::getData() {
-    return new T();
+    return this->data;
 }
 
 template <class T>
 Task<T>* Task<T>::getNext() {
-    return NULL;
+    return this->next;
 }
 
 template <class T>
 Task<T>* Task<T>::getPrev() {
-    return NULL;
+    return this->prev;
 }
 
 template <class T>
 bool Task<T>::setNext(Task<T>* nextTask) {
-    return false;
+    this->next = nextTask;
+    return true;
 }
 
 template <class T>
 bool Task<T>::setPrev(Task<T>* prevTask) {
-    return false;
+    this->prev = prevTask;
+    return true;
 }
 
 template <class T>
