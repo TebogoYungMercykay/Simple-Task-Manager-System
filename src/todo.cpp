@@ -12,7 +12,7 @@ template <typename T>
 Todo<T>::~Todo() {
     Task<T>* current = this->head;
     while (current != NULL) {
-        Task<T>* next = current->next;
+        Task<T>* next = current->getNext();
         delete current;
         current = next;
     }
@@ -40,8 +40,8 @@ bool Todo<T>::addTask(const Task<T>* toAdd) {
             this->head = newTask;
             this->tail = newTask;
         } else {
-            this->tail->next = newTask;
-            newTask->prev = this->tail;
+            this->tail->setNext(newTask);
+            newTask->setPrev(this->tail);
             this->tail = newTask;
         }
 
@@ -54,18 +54,18 @@ bool Todo<T>::addTask(const Task<T>* toAdd) {
 template <typename T>
 bool Todo<T>::removeTask(Task<T>* toRemove) {
     if (toRemove != NULL && this->head != NULL) {
-        for (Task<T>* current = this->head; current != NULL; current = current->next) {
+        for (Task<T>* current = this->head; current != NULL; current = current->getNext()) {
             if (current == toRemove) {
-                if (current->prev == NULL) {
-                    this->head = current->next;
+                if (current->getPrev() == NULL) {
+                    this->head = current->getNext();
                 } else {
-                    current->prev->next = current->next;
+                    current->getPrev()->setNext(current->getNext());
                 }
 
-                if (current->next == NULL) {
-                    this->tail = current->prev;
+                if (current->getNext() == NULL) {
+                    this->tail = current->getPrev();
                 } else {
-                    current->next->prev = current->prev;
+                    current->getNext()->setPrev(current->getPrev());
                 }
 
                 delete current;
@@ -79,7 +79,7 @@ bool Todo<T>::removeTask(Task<T>* toRemove) {
 
 template <typename T>
 Task<T>* Todo<T>::findTask(int priority) {
-    for (Task<T>* current = this->head; current != NULL; current = current->next) {
+    for (Task<T>* current = this->head; current != NULL; current = current->getNext()) {
         if (current->getPriority() == priority) {
             return current;
         }
@@ -90,7 +90,7 @@ Task<T>* Todo<T>::findTask(int priority) {
 
 template <typename T>
 Task<T>* Todo<T>::findTask(std::string description) {
-    for (Task<T>* current = this->head; current != NULL; current = current->next) {
+    for (Task<T>* current = this->head; current != NULL; current = current->getNext()) {
         if (current->getDescription() == description) {
             return current;
         }
@@ -102,7 +102,7 @@ Task<T>* Todo<T>::findTask(std::string description) {
 template <typename T>
 std::string Todo<T>::doTasks() {
     std::string result = "";
-    for (Task<T>* current = this->head; current != NULL; current = current->next) {
+    for (Task<T>* current = this->head; current != NULL; current = current->getNext()) {
         result += current->getDescription() + "\n";
     }
 
