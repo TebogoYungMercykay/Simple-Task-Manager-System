@@ -16,12 +16,12 @@ class Task {
         Task(int priority, std::string description, bool repeat, T data);
         Task(const Task<T>& toCopy);
         ~Task();
-        int getPriority();
-        std::string getDescription();
-        bool getRepeat();
-        T getData();
-        Task<T>* getNext();
-        Task<T>* getPrev();
+        int getPriority() const;
+        std::string getDescription() const;
+        bool getRepeat() const;
+        T getData() const;
+        Task<T>* getNext() const;
+        Task<T>* getPrev() const;
         bool setNext(Task<T>* nextTask);
         bool setPrev(Task<T>* prevTask);
         bool operator==(const Task<T>& other);
