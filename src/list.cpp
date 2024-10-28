@@ -1,5 +1,6 @@
 #ifndef LIST_CPP
 #define LIST_CPP
+
 #include "list.h"
 
 template <class T>
