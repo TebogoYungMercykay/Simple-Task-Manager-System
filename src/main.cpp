@@ -45,6 +45,100 @@ void testTask() {
     std::cout << "Tasks Equal: " << ((task3 == task5) ? "True" : "False") << std::endl << std::endl;
 }
 
+void testTodo() {
+    std::cout << "\n=== Testing The Basics ===\n" << std::endl;
+    Task<int> task1(1, "Task 1", false, 23);
+    Task<int> task2(2, "Task 2", true, 33);
+    Task<int> task3(3, "Task 3", false, 43);
+    Task<int> task4(4, "Task 4", false, 23);
+    Task<int> task5(5, "Task 5", false, 23);
+
+    Todo<int> myTodo;
+
+    std::cout << "Tail: " << myTodo.getHead() << " - " << " Head: " << myTodo.getTail() << std::endl;
+    Task<int>* myTask1 = myTodo.findTask(1);
+    std::cout << ((myTask1) ? myTask1->getDescription() : "NULL") << std::endl;
+    Task<int>* myTask2 = myTodo.findTask("Task 1");
+    std::cout << ((myTask2) ? myTask2->getDescription() : "NULL") << std::endl;
+    std::cout << myTodo.doTasks() << std::endl;
+
+    myTodo.addTask(&task1);
+    std::cout << "Tail: " << myTodo.getHead() << " - " << " Head: " << myTodo.getTail() << std::endl;
+    myTask1 = myTodo.findTask(1);
+    std::cout << ((myTask1) ? myTask1->getDescription() : "NULL") << std::endl;
+    myTask2 = myTodo.findTask("Task 1");
+    std::cout << ((myTask2) ? myTask2->getDescription() : "NULL") << std::endl;
+    std::cout << myTodo.doTasks() << std::endl;
+
+    myTodo.addTask(&task2);
+    std::cout << "Tail: " << myTodo.getHead() << " - " << " Head: " << myTodo.getTail() << std::endl;
+    std::cout << myTodo.doTasks() << std::endl;
+
+    myTodo.addTask(&task3);
+    myTodo.addTask(&task4);
+    std::cout << "Tail: " << myTodo.getHead() << " - " << " Head: " << myTodo.getTail() << std::endl;
+    std::cout << myTodo.doTasks() << std::endl;
+
+    myTodo.addTask(&task5);
+    std::cout << "Tail: " << myTodo.getHead() << " - " << " Head: " << myTodo.getTail() << std::endl;
+    myTask1 = myTodo.findTask(1);
+    std::cout << ((myTask1) ? myTask1->getDescription() : "NULL") << std::endl;
+    myTask2 = myTodo.findTask("Task 5");
+    std::cout << ((myTask2) ? myTask2->getDescription() : "NULL") << std::endl;
+    std::cout << myTodo.doTasks() << std::endl;
+
+    std::cout << "\n=== Now Checking Structure ===\n" << std::endl;
+
+    Task<int>* tail = myTodo.getTail();
+    Task<int>* head = myTodo.getHead();
+
+    printTask(head, false);
+    printTask(tail, false);
+
+    printTask(myTodo.findTask("Task 1"), false);
+    printTask(myTodo.findTask("Task 2"), false);
+    printTask(myTodo.findTask("Task 3"), false);
+    printTask(myTodo.findTask("Task 4"), false);
+    printTask(myTodo.findTask("Task 5"), false);
+
+    std::cout << "\n=== Now Testing Delete ===\n" << std::endl;
+
+    myTodo.removeTask(&task5);
+    myTask2 = myTodo.findTask("Task 5");
+    std::cout << ((myTask2) ? myTask2->getDescription() : "NULL") << std::endl;
+    std::cout << myTodo.doTasks() << std::endl;
+
+    myTodo.removeTask(&task4);
+    myTask2 = myTodo.findTask("Task 4");
+    std::cout << ((myTask2) ? myTask2->getDescription() : "NULL") << std::endl;
+    std::cout << myTodo.doTasks() << std::endl;
+
+    myTodo.removeTask(&task3);
+    myTask2 = myTodo.findTask("Task 3");
+    std::cout << ((myTask2) ? myTask2->getDescription() : "NULL") << std::endl;
+    std::cout << myTodo.doTasks() << std::endl;
+
+    myTodo.removeTask(&task2);
+    myTask2 = myTodo.findTask("Task 2");
+    std::cout << ((myTask2) ? myTask2->getDescription() : "NULL") << std::endl;
+    std::cout << myTodo.doTasks() << std::endl;
+
+    myTodo.removeTask(&task1);
+    myTask2 = myTodo.findTask("Task 1");
+    std::cout << ((myTask2) ? myTask2->getDescription() : "NULL") << std::endl;
+    std::cout << myTodo.doTasks() << std::endl;
+
+    myTodo.removeTask(&task1);
+    myTask2 = myTodo.findTask("Task 1");
+    std::cout << ((myTask2) ? myTask2->getDescription() : "NULL") << std::endl;
+    std::cout << myTodo.doTasks() << std::endl;
+
+    myTodo.removeTask(&task5);
+    myTask2 = myTodo.findTask("Task 1");
+    std::cout << ((myTask2) ? myTask2->getDescription() : "NULL") << std::endl;
+    std::cout << myTodo.doTasks() << std::endl;
+}
+
 void printTask(Task<int>* task, bool moreLines) {
     if (task == NULL) {
         std::cout << "Task is NULL" << std::endl;
