@@ -20,6 +20,19 @@ int main() {
     return 0;
 }
 
+void testTaskManager() {
+    TaskManager<std::string> taskManager("tasks.txt");
+
+    Todo<std::string>* todo = taskManager.getTodo();
+    Task<std::string>* current = todo->getHead();
+    std::cout << "Todo List:" << std::endl;
+    while (current != NULL) {
+        std::cout << "Priority: " << current->getPriority() << ", Description: " << current->getDescription() << std::endl;
+        current = current->getNext();
+        if (current == todo->getHead()) break;
+    }
+}
+
 void testTask() {
     Task<int> task1(1, "Task 1", false, 23);
     Task<int> task2(2, "Task 2", true, 33);
@@ -400,17 +413,4 @@ void testHistory() {
     delete toDelete;
     toDelete = NULL;
     std::cout << "Head: " << myHistory.getHead() << std::endl;
-}
-
-void testTaskManager() {
-    TaskManager<std::string> taskManager("tasks.txt");
-
-    Todo<std::string>* todo = taskManager.getTodo();
-    Task<std::string>* current = todo->getHead();
-    std::cout << "Todo List:" << std::endl;
-    while (current != NULL) {
-        std::cout << "Priority: " << current->getPriority() << ", Description: " << current->getDescription() << std::endl;
-        current = current->getNext();
-        if (current == todo->getHead()) break;
-    }
 }
