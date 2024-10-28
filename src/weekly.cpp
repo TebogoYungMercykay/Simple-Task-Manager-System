@@ -2,7 +2,6 @@
 #define WEEKLY_CPP
 
 #include "weekly.h"
-#include <iostream>
 
 template <typename T>
 WeeklyTasks<T>::WeeklyTasks() : List<T>() {
