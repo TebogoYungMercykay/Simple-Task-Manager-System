@@ -1,0 +1,6 @@
+3#Task 74#True#64
+9#Task 29#True#172
+7#Task 79#True#371
+0#Task 6#True#615
+0#Task 68#False#532
+9#Task 21#False#462
