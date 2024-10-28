@@ -14,8 +14,8 @@ int main() {
     // testTodo();
     // testWeekly();
     // testPriority();
-    testHistory();
-    // testTaskManager();
+    // testHistory();
+    testTaskManager();
 
     return 0;
 }
