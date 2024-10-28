@@ -55,7 +55,7 @@ template <typename T>
 bool Todo<T>::removeTask(Task<T>* toRemove) {
     if (toRemove != NULL && this->head != NULL) {
         for (Task<T>* current = this->head; current != NULL; current = current->getNext()) {
-            if (current == toRemove) {
+            if (*current == *toRemove) {
                 if (current->getPrev() == NULL) {
                     this->head = current->getNext();
                 } else {
