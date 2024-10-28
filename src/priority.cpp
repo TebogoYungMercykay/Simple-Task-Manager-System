@@ -89,46 +89,31 @@ std::string PriorityList<T>::doNTasks(int numTasksToProcess) {
     }
     
     std::string result;
+    std::stringstream ss;
+
     for (int i = 0; i < numTasksToProcess && this->tail != NULL; i++) {
-        result += "Task: ";
-        result += this->tail->getDescription();
-        result += "  Priority: ";
-        
-        std::stringstream ss;
-        ss << this->tail->getPriority();
-        result += ss.str();
-        
-        result += "  Data: ";
-        result += this->tail->getData();
-        result += "  COMPLETED\n";
+        ss << "Task: " << this->tail->getDescription() << " Priority: ";
+        ss << this->tail->getPriority() << " Data: " << this->tail->getData() << " COMPLETED\n";
         
         removeTask();
     }
     
-    return result;
+    return ss.str();
 }
 
 template <typename T>
 std::string PriorityList<T>::doTasks() {
     std::string result;
+    std::stringstream ss;
     
     while (this->tail != NULL) {
-        result += "Task: ";
-        result += this->tail->getDescription();
-        result += "  Priority: ";
-        
-        std::stringstream ss;
-        ss << this->tail->getPriority();
-        result += ss.str();
-        
-        result += "  Data: ";
-        result += this->tail->getData();
-        result += "  COMPLETED\n";
+        ss << "Task: " << this->tail->getDescription() << " Priority: ";
+        ss << this->tail->getPriority() << " Data: " << this->tail->getData() << " COMPLETED\n";
         
         removeTask();
     }
     
-    return result;
+    return ss.str();
 }
 
 #endif
