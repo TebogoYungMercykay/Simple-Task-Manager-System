@@ -2,6 +2,19 @@
 #define LIST_CPP
 #include "list.h"
 
-//Your code here
+template <class T>
+List<T>::List() {
+
+}
+
+template <class T>
+List<T>::~List() {
+
+}
+
+template <class T>
+Task<T>* List<T>::getHead() {
+    return NULL;
+}
 
 #endif
