@@ -156,6 +156,113 @@ void printTask(Task<int>* task, bool moreLines) {
     }
 }
 
+void testWeekly() {
+    std::cout << "\n=== Testing The Basics ===\n" << std::endl;
+    Task<int> task1(1, "Task 1", false, 23);
+    Task<int> task2(2, "Task 2", true, 33);
+    Task<int> task3(3, "Task 3", false, 43);
+    Task<int> task4(4, "Task 4", false, 23);
+    Task<int> task5(5, "Task 5", false, 23);
+
+    WeeklyTasks<int> myWeeklyTasks;
+
+    std::cout << "Tail: " << myWeeklyTasks.getHead() << " - " << " Head: " << myWeeklyTasks.getTail() << std::endl;
+    std::cout << myWeeklyTasks.doTasks(3) << std::endl;
+
+    myWeeklyTasks.addTask(&task1);
+    std::cout << "Tail: " << myWeeklyTasks.getHead() << " - " << " Head: " << myWeeklyTasks.getTail() << std::endl;
+    std::cout << myWeeklyTasks.doTasks(3) << std::endl;
+
+    myWeeklyTasks.addTask(&task2);
+    std::cout << "Tail: " << myWeeklyTasks.getHead() << " - " << " Head: " << myWeeklyTasks.getTail() << std::endl;
+    std::cout << myWeeklyTasks.doTasks(3) << std::endl;
+
+    myWeeklyTasks.addTask(&task3);
+    myWeeklyTasks.addTask(&task4);
+    std::cout << "Tail: " << myWeeklyTasks.getHead() << " - " << " Head: " << myWeeklyTasks.getTail() << std::endl;
+    std::cout << myWeeklyTasks.doTasks(3) << std::endl;
+
+    myWeeklyTasks.addTask(&task5);
+    std::cout << "Tail: " << myWeeklyTasks.getHead() << " - " << " Head: " << myWeeklyTasks.getTail() << std::endl;
+    std::cout << myWeeklyTasks.doTasks(3) << std::endl;
+
+    std::cout << "\n=== Now Checking Structure ===\n" << std::endl;
+
+    Task<int>* tail = myWeeklyTasks.getTail();
+    Task<int>* head = myWeeklyTasks.getHead();
+
+    printTask(head, true);
+    printTask(tail, true);
+
+    std::cout << "\n=== Now Testing Delete ===\n" << std::endl;
+
+    bool deleted = myWeeklyTasks.removeTask(&task1);
+    std::cout << myWeeklyTasks.doTasks() << std::endl;
+    std::cout << myWeeklyTasks.getNumTasks() << std::endl;
+    tail = myWeeklyTasks.getTail();
+    head = myWeeklyTasks.getHead();
+    printTask(head, true);
+    printTask(tail, true);
+    printTask(tail->getNext(), true);
+    std::cout << "Detete Successful: " << ((deleted) ? "TRUE" : "FALSE") << std::endl << std::endl;
+
+    deleted = myWeeklyTasks.removeTask(&task3);
+    std::cout << myWeeklyTasks.doTasks() << std::endl;
+    std::cout << myWeeklyTasks.getNumTasks() << std::endl;
+    tail = myWeeklyTasks.getTail();
+    head = myWeeklyTasks.getHead();
+    printTask(head, true);
+    printTask(tail, true);
+    printTask(tail->getNext(), true);
+    std::cout << "Detete Successful: " << ((deleted) ? "TRUE" : "FALSE") << std::endl << std::endl;
+
+    deleted = myWeeklyTasks.removeTask(&task5);
+    std::cout << myWeeklyTasks.doTasks() << std::endl;
+    std::cout << myWeeklyTasks.getNumTasks() << std::endl;
+    tail = myWeeklyTasks.getTail();
+    head = myWeeklyTasks.getHead();
+    printTask(head, true);
+    printTask(tail, true);
+    printTask(tail->getNext(), true);
+    std::cout << "Detete Successful: " << ((deleted) ? "TRUE" : "FALSE") << std::endl << std::endl;
+
+    deleted = myWeeklyTasks.removeTask(&task2);
+    std::cout << myWeeklyTasks.doTasks() << std::endl;
+    std::cout << myWeeklyTasks.getNumTasks() << std::endl;
+    tail = myWeeklyTasks.getTail();
+    head = myWeeklyTasks.getHead();
+    printTask(head, true);
+    printTask(tail, true);
+    std::cout << "Detete Successful: " << ((deleted) ? "TRUE" : "FALSE") << std::endl << std::endl;
+
+    deleted = myWeeklyTasks.removeTask(&task4);
+    std::cout << myWeeklyTasks.doTasks() << std::endl;
+    std::cout << myWeeklyTasks.getNumTasks() << std::endl;
+    tail = myWeeklyTasks.getTail();
+    head = myWeeklyTasks.getHead();
+    printTask(head, true);
+    printTask(tail, true);
+    std::cout << "Detete Successful: " << ((deleted) ? "TRUE" : "FALSE") << std::endl << std::endl;
+
+    deleted = myWeeklyTasks.removeTask(&task1);
+    std::cout << myWeeklyTasks.doTasks() << std::endl;
+    std::cout << myWeeklyTasks.getNumTasks() << std::endl;
+    tail = myWeeklyTasks.getTail();
+    head = myWeeklyTasks.getHead();
+    printTask(head, true);
+    printTask(tail, true);
+    std::cout << "Detete Successful: " << ((deleted) ? "TRUE" : "FALSE") << std::endl << std::endl;
+
+    deleted = myWeeklyTasks.removeTask(&task5);
+    std::cout << myWeeklyTasks.doTasks() << std::endl;
+    std::cout << myWeeklyTasks.getNumTasks() << std::endl;
+    tail = myWeeklyTasks.getTail();
+    head = myWeeklyTasks.getHead();
+    printTask(head, true);
+    printTask(tail, true);
+    std::cout << "Detete Successful: " << ((deleted) ? "TRUE" : "FALSE") << std::endl << std::endl;
+}
+
 void testPriority() {
     TaskManager<std::string> taskManager("tasks.txt");
 
