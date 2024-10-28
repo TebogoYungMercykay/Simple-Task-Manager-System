@@ -3,7 +3,7 @@
 
 #include "task.h"
 
-template <class T>
+template <typename T>
 Task<T>::Task(int priority, std::string description, bool repeat, T data) {
     this->priority = priority;
     this->description = description;
@@ -15,7 +15,7 @@ Task<T>::Task(int priority, std::string description, bool repeat, T data) {
     this->next = NULL;
 }
 
-template <class T>
+template <typename T>
 Task<T>::Task(const Task<T>& toCopy) {
     this->priority = toCopy.getPriority();
     this->description = toCopy.getDescription();
@@ -27,54 +27,54 @@ Task<T>::Task(const Task<T>& toCopy) {
     this->next = NULL;
 }
 
-template <class T>
+template <typename T>
 Task<T>::~Task() {
 
 }
 
-template <class T>
+template <typename T>
 int Task<T>::getPriority() {
     return this->priority;
 }
 
-template <class T>
+template <typename T>
 std::string Task<T>::getDescription() {
     return this->description;
 }
 
-template <class T>
+template <typename T>
 bool Task<T>::getRepeat() {
     return this->repeat;
 }
 
-template <class T>
+template <typename T>
 T Task<T>::getData() {
     return this->data;
 }
 
-template <class T>
+template <typename T>
 Task<T>* Task<T>::getNext() {
     return this->next;
 }
 
-template <class T>
+template <typename T>
 Task<T>* Task<T>::getPrev() {
     return this->prev;
 }
 
-template <class T>
+template <typename T>
 bool Task<T>::setNext(Task<T>* nextTask) {
     this->next = nextTask;
     return true;
 }
 
-template <class T>
+template <typename T>
 bool Task<T>::setPrev(Task<T>* prevTask) {
     this->prev = prevTask;
     return true;
 }
 
-template <class T>
+template <typename T>
 bool Task<T>::operator==(const Task<T>& other) {
     return (
         this->priority == other.getPriority() &&

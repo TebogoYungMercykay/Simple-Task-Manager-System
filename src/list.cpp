@@ -3,17 +3,17 @@
 
 #include "list.h"
 
-template <class T>
+template <typename T>
 List<T>::List() {
     this->head = NULL;
 }
 
-template <class T>
+template <typename T>
 List<T>::~List() {
 
 }
 
-template <class T>
+template <typename T>
 Task<T>* List<T>::getHead() {
     return this->head;
 }
