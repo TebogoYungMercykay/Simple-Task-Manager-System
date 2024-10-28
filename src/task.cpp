@@ -75,7 +75,12 @@ bool Task<T>::setPrev(Task<T>* prevTask) {
 
 template <class T>
 bool Task<T>::operator==(const Task<T>& other) {
-    return false;
+    return (
+        this->priority == other.getPriority() &&
+        this->description == other.getDescription() &&
+        this->repeat == other.getRepeat() &&
+        this->data == other.getData()
+    );
 }
 
 #endif
