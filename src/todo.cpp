@@ -11,9 +11,9 @@ Todo<T>::Todo() : List<T>() {
 template <typename T>
 Todo<T>::~Todo() {
     if (this->head != NULL) {
-        Task<T>* nextTask = NULL;
-        for (Task<T>* current = this->head; current != NULL; current = nextTask) {
-            nextTask = current->next;
+        Task<T>* doDelete = NULL;
+        for (Task<T>* current = this->head; current != NULL; current = doDelete) {
+            doDelete = current->next;
             delete current;
         }
 
