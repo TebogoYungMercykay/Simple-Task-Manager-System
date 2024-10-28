@@ -6,8 +6,7 @@
 #include <sstream>
 
 template <class T>
-class PriorityList: public List<T>
-{
+class PriorityList: public List<T> {
     private:
         Task<T>* tail;
         int numTasks;
@@ -21,7 +20,6 @@ class PriorityList: public List<T>
         std::string doNTasks(int numTasks);
         std::string doTasks();
 };
-
 
 #endif
 #include "priority.cpp"

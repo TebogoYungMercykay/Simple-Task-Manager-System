@@ -5,8 +5,7 @@
 #include <sstream>
 
 template <class T>
-class History: public List<T>
-{
+class History: public List<T> {
     private:
         int numTasks;
     public:

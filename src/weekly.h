@@ -2,11 +2,10 @@
 #define WEEKLY_H
 
 #include "list.h"
-#include<sstream>
+#include <sstream>
 
 template <class T>
-class WeeklyTasks: public List<T>
-{
+class WeeklyTasks: public List<T> {
     private:
         Task<T>* tail;
         int numTasks;
@@ -20,7 +19,6 @@ class WeeklyTasks: public List<T>
         std::string doTasks();
         std::string doTasks(int repitions);
 };
-
 
 #endif
 #include "weekly.cpp"

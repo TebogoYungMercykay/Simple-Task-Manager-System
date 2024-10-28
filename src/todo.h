@@ -4,8 +4,7 @@
 #include "list.h"
 
 template <class T>
-class Todo: public List<T>
-{
+class Todo: public List<T> {
     private:
         Task<T>* tail;
     public:

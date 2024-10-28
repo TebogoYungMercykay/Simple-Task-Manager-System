@@ -4,8 +4,7 @@
 #include <string>
 
 template <class T>
-class Task
-{
+class Task {
     private:
         Task<T>* next;
         Task<T>* prev;
@@ -27,7 +26,6 @@ class Task
         bool setPrev(Task<T>* prevTask);
         bool operator==(const Task<T>& other);
 };
-
 
 #endif
 #include "task.cpp"

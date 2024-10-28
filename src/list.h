@@ -4,8 +4,7 @@
 #include "task.h"
 
 template <class T>
-class List
-{
+class List {
     protected:
         Task<T>* head;
     public:

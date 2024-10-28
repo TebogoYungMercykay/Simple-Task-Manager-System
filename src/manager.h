@@ -12,8 +12,7 @@
 #include <sstream>
 
 template <class T>
-class TaskManager
-{
+class TaskManager {
     private:
         Todo<T>* todo;
         WeeklyTasks<T>* weekly;
@@ -33,7 +32,6 @@ class TaskManager
         std::string doPriority(int numTasks);
         std::string undoTasks(bool all);
 };
-
 
 #endif
 #include "manager.cpp"
