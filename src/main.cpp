@@ -24,13 +24,32 @@ void testTaskManager() {
     TaskManager<std::string> taskManager("tasks.txt");
 
     Todo<std::string>* todo = taskManager.getTodo();
-    Task<std::string>* current = todo->getHead();
     std::cout << "Todo List:" << std::endl;
-    while (current != NULL) {
-        std::cout << "Priority: " << current->getPriority() << ", Description: " << current->getDescription() << std::endl;
-        current = current->getNext();
-        if (current == todo->getHead()) break;
-    }
+    std::cout << todo->doTasks() << std::endl;
+
+    // Member Functions
+
+    taskManager.setPriority();
+    taskManager.setWeeklyTasks();
+    taskManager.doWeekly(2);
+    taskManager.doPriority(4);
+    taskManager.undoTasks(false);
+
+    Task<std::string>* current;
+    WeeklyTasks<std::string>* weekly = taskManager.getWeekly();
+    current = weekly->getHead();
+    std::cout << "Weekly Tasks:" << std::endl;
+    std::cout << weekly->doTasks() << std::endl;
+
+    PriorityList<std::string>* priority = taskManager.getPriority();
+    current = priority->getHead();
+    std::cout << "Priority List:" << std::endl;
+    std::cout << priority->doTasks() << std::endl;
+
+    History<std::string>* history = taskManager.getHistory();
+    current = history->getHead();
+    std::cout << "History:" << std::endl;
+    std::cout << history->doTasks() << std::endl;
 }
 
 void testTask() {
