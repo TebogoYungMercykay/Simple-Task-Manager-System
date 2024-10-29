@@ -22,7 +22,7 @@ TaskManager<T>::TaskManager(std::string fileName) {
         std::getline(ss, repeatString, '#');
         std::getline(ss, dataValue, '#');
         
-        std::stringstream priorityStream(priority_str);
+        std::stringstream priorityStream(priorityString);
         int priorityValue;
         priorityStream >> priorityValue;
         
@@ -85,8 +85,8 @@ void TaskManager<T>::setWeeklyTasks() {
     while (current != NULL) {
         next = current->getNext();
         
-        if (current->task && current->task->getRepeat()) {
-            weekly->addTask(current->task);
+        if (current && current->getRepeat()) {
+            weekly->addTask(current);
             todo->removeTask(current);
         }
         
@@ -99,27 +99,18 @@ void TaskManager<T>::setPriority() {
     if (priority == NULL) {
         priority = new PriorityList<T>();
     }
-    
+
     Task<T>* current = todo->getHead();
-    Task<T>* prev = NULL;
     
     while (current != NULL) {
-        if (!current->task->getRepeat()) {
-            priority->addTask(current->task);
-            
-            if (prev == NULL) {
-                todo->setHead(current->getNext());
-            } else {
-                prev->setNext(current->getNext());
-            }
+        Task<T>* next = current->getNext();
 
-            Task<T>* temp = current;
-            current = current->getNext();
-            delete temp;
-        } else {
-            prev = current;
-            current = current->getNext();
+        if (!current->getRepeat()) {
+            priority->addTask(current);
+            todo->removeTask(current);
         }
+
+        current = next;
     }
 }
 
@@ -131,7 +122,7 @@ std::string TaskManager<T>::doWeekly(int cycles) {
 
 template <class T>
 std::string TaskManager<T>::doPriority(int numTasks) {
-    if (priority == NULL || priority->isEmpty()) {
+    if (priority == NULL || priority->getHead() == NULL) {
         return "Priority Queue Empty";
     }
     
@@ -142,7 +133,7 @@ std::string TaskManager<T>::doPriority(int numTasks) {
     std::string result;
     for (int i = 0; i < numTasks && priority->getTail() != NULL; i++) {
         Task<T>* task = priority->getTail();
-        result += doNTasks(1);
+        result += priority->doNTasks(1);
         history->addTask(task);
     }
 
@@ -151,7 +142,7 @@ std::string TaskManager<T>::doPriority(int numTasks) {
 
 template <class T>
 std::string TaskManager<T>::undoTasks(bool all) {
-    if (history == NULL || history->isEmpty()) {
+    if (history == NULL || history->getHead() == NULL) {
         return "Nothing to Undo";
     }
     
@@ -161,7 +152,7 @@ std::string TaskManager<T>::undoTasks(bool all) {
     
     std::string result = "";
     if (all == true) {
-        while (!history->getHead() != NULL) {
+        while (history->getHead() != NULL) {
             Task<T>* task = history->getHead();
             result += history->undoLatest();
             priority->addTask(task);
