@@ -15,21 +15,22 @@ TaskManager<T>::TaskManager(std::string fileName) {
     
     while (std::getline(file, line)) {
         std::stringstream ss(line);
-        std::string priority_str, description, repeat_str, data;
+        std::string priorityString, descriptionValue, repeatString, dataValue;
         
-        std::getline(ss, priority_str, '#');
-        std::getline(ss, description, '#');
-        std::getline(ss, repeat_str, '#');
-        std::getline(ss, data, '#');
+        std::getline(ss, priorityString, '#');
+        std::getline(ss, descriptionValue, '#');
+        std::getline(ss, repeatString, '#');
+        std::getline(ss, dataValue, '#');
         
-        std::stringstream priority_ss(priority_str);
-        int priority_val;
-        priority_ss >> priority_val;
+        std::stringstream priorityStream(priority_str);
+        int priorityValue;
+        priorityStream >> priorityValue;
         
-        bool repeat = (repeat_str == "True");
+        bool repeatValue = (repeatString == "True");
         
-        Task<T>* newTask = new Task<T>(priority_val, description, repeat, data);
+        Task<T>* newTask = new Task<T>(priorityValue, descriptionValue, repeatValue, dataValue);
         todo->addTask(newTask);
+        delete newTask;
     }
     
     file.close();
@@ -68,6 +69,7 @@ bool TaskManager<T>::newTask(const Task<T>* newTask) {
     if (todo == NULL) {
         todo = new Todo<T>();
     }
+
     return todo->addTask(newTask);
 }
 
@@ -76,27 +78,19 @@ void TaskManager<T>::setWeeklyTasks() {
     if (weekly == NULL) {
         weekly = new WeeklyTasks<T>();
     }
-    
+
     Task<T>* current = todo->getHead();
-    Task<T>* prev = NULL;
+    Task<T>* next = NULL;
     
     while (current != NULL) {
-        if (current->task->getRepeat()) {
+        next = current->getNext();
+        
+        if (current->task && current->task->getRepeat()) {
             weekly->addTask(current->task);
-            
-            if (prev == NULL) {
-                todo->setHead(current->getNext());
-            } else {
-                prev->setNext(current->getNext());
-            }
-
-            Task<T>* temp = current;
-            current = current->getNext();
-            delete temp;
-        } else {
-            prev = current;
-            current = current->getNext();
+            todo->removeTask(current);
         }
+        
+        current = next;
     }
 }
 
@@ -131,23 +125,7 @@ void TaskManager<T>::setPriority() {
 
 template <class T>
 std::string TaskManager<T>::doWeekly(int cycles) {
-    if (weekly == NULL || cycles <= 0) {
-        return "No weekly tasks to do";
-    }
-    
-    std::string result;
-    for (int i = 0; i < cycles; i++) {
-        std::stringstream ss;
-        ss << "Cycle " << (i + 1) << ":\n";
-        result += ss.str();
-        
-        Task<T>* current = weekly->getHead();
-        while (current != NULL) {
-            result += current->getDescription() + "\n";
-            current = current->getNext();
-            if (current == weekly->getHead()) break;
-        }
-    }
+    std::string result = weekly->doTasks(cycles);
     return result;
 }
 
@@ -162,11 +140,12 @@ std::string TaskManager<T>::doPriority(int numTasks) {
     }
     
     std::string result;
-    for (int i = 0; i < numTasks && !priority->isEmpty(); i++) {
-        Task<T>* task = priority->removeHighestPriority();
+    for (int i = 0; i < numTasks && priority->getTail() != NULL; i++) {
+        Task<T>* task = priority->getTail();
+        result += doNTasks(1);
         history->addTask(task);
-        result += task->getDescription() + "\n";
     }
+
     return result;
 }
 
@@ -180,17 +159,17 @@ std::string TaskManager<T>::undoTasks(bool all) {
         priority = new PriorityList<T>();
     }
     
-    std::string result = "Undoing: \n";
+    std::string result = "";
     if (all == true) {
-        while (!history->isEmpty()) {
-            Task<T>* task = history->popTask();
+        while (!history->getHead() != NULL) {
+            Task<T>* task = history->getHead();
+            result += history->undoLatest();
             priority->addTask(task);
-            result += task->getDescription() + "\n";
         }
     } else {
-        Task<T>* task = history->popTask();
+        Task<T>* task = history->getHead();
         priority->addTask(task);
-        result += task->getDescription() + "\n";
+        return history->undoLatest();
     }
     
     return result;
