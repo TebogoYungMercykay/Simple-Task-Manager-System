@@ -29,10 +29,15 @@ void testTaskManager() {
 
     // Member Functions
 
+    std::cout << "=== Setting Priority ===" << std::endl;
     taskManager.setPriority();
+    std::cout << "=== Setting Weekly Tasks ===" << std::endl;
     taskManager.setWeeklyTasks();
+    std::cout << "=== Completing Weekly Tasks ===" << std::endl;
     taskManager.doWeekly(2);
+    std::cout << "=== Completing Priority Tasks ===" << std::endl;
     taskManager.doPriority(4);
+    std::cout << "=== Undoing Tasks ===" << std::endl;
     taskManager.undoTasks(false);
 
     Task<std::string>* current;

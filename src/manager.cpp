@@ -133,8 +133,8 @@ std::string TaskManager<T>::doPriority(int numTasks) {
     std::string result;
     for (int i = 0; i < numTasks && priority->getTail() != NULL; i++) {
         Task<T>* task = priority->getTail();
-        result += priority->doNTasks(1);
         history->addTask(task);
+        result += priority->doNTasks(1);
     }
 
     return result;
@@ -154,8 +154,8 @@ std::string TaskManager<T>::undoTasks(bool all) {
     if (all == true) {
         while (history->getHead() != NULL) {
             Task<T>* task = history->getHead();
-            result += history->undoLatest();
             priority->addTask(task);
+            result += history->undoLatest();
         }
     } else {
         Task<T>* task = history->getHead();
