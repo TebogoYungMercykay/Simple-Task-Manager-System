@@ -17,10 +17,10 @@ Task<T>::Task(int priority, std::string description, bool repeat, T data) {
 
 template <typename T>
 Task<T>::Task(const Task<T>& toCopy) {
-    this->priority = toCopy.getPriority();
-    this->description = toCopy.getDescription();
-    this->repeat = toCopy.getRepeat();
-    this->data = toCopy.getData();
+    this->priority = toCopy.priority;
+    this->description = toCopy.description;
+    this->repeat = toCopy.repeat;
+    this->data = toCopy.data;
 
     // Pointers 
     this->prev = NULL;
@@ -33,32 +33,32 @@ Task<T>::~Task() {
 }
 
 template <typename T>
-int Task<T>::getPriority() const {
+int Task<T>::getPriority() {
     return this->priority;
 }
 
 template <typename T>
-std::string Task<T>::getDescription() const {
+std::string Task<T>::getDescription() {
     return this->description;
 }
 
 template <typename T>
-bool Task<T>::getRepeat() const {
+bool Task<T>::getRepeat() {
     return this->repeat;
 }
 
 template <typename T>
-T Task<T>::getData() const {
+T Task<T>::getData() {
     return this->data;
 }
 
 template <typename T>
-Task<T>* Task<T>::getNext() const {
+Task<T>* Task<T>::getNext() {
     return this->next;
 }
 
 template <typename T>
-Task<T>* Task<T>::getPrev() const {
+Task<T>* Task<T>::getPrev() {
     return this->prev;
 }
 
@@ -77,10 +77,10 @@ bool Task<T>::setPrev(Task<T>* prevTask) {
 template <typename T>
 bool Task<T>::operator==(const Task<T>& other) {
     return (
-        this->priority == other.getPriority() &&
-        this->description == other.getDescription() &&
-        this->repeat == other.getRepeat() &&
-        this->data == other.getData()
+        this->priority == other.priority &&
+        this->description == other.description &&
+        this->repeat == other.repeat &&
+        this->data == other.data
     );
 }
 
