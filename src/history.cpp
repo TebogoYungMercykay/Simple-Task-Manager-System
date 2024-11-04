@@ -25,12 +25,7 @@ History<T>::~History() {
 template <typename T>
 bool History<T>::addTask(const Task<T>* toAdd) {
     if (toAdd != NULL) {
-        Task<T>* newTask = new Task<T>(
-                toAdd->getPriority(),
-                toAdd->getDescription(),
-                toAdd->getRepeat(),
-                toAdd->getData()
-            );
+        Task<T>* newTask = new Task<T>(*toAdd);
 
         newTask->setNext(this->head);
         this->head = newTask;

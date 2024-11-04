@@ -40,12 +40,7 @@ int WeeklyTasks<T>::getNumTasks() {
 template <typename T>
 bool WeeklyTasks<T>::addTask(const Task<T>* toAdd) {
     if (toAdd != NULL) {
-        Task<T>* newTask = new Task<T>(
-                toAdd->getPriority(),
-                toAdd->getDescription(),
-                toAdd->getRepeat(),
-                toAdd->getData()
-            );
+        Task<T>* newTask = new Task<T>(*toAdd);
 
         if (this->tail == NULL) {
             this->head = newTask;

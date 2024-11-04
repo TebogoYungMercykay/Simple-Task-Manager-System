@@ -36,12 +36,7 @@ int PriorityList<T>::getNumTasks() {
 template <typename T>
 bool PriorityList<T>::addTask(const Task<T>* toAdd) {
     if (toAdd != NULL) {
-        Task<T>* newTask = new Task<T>(
-            toAdd->getPriority(),
-            toAdd->getDescription(),
-            toAdd->getRepeat(),
-            toAdd->getData()
-        );
+        Task<T>* newTask = new Task<T>(*toAdd);
         
         if (this->head == NULL) {
             this->head = newTask;
