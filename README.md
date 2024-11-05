@@ -25,8 +25,8 @@ This is a simple task management system built using Python. It utilizes various 
 3. **Usage**: Run the main script to start the task management system.
 
 ```
-git clone https://github.com/tebogoyungmercykay/simple-task-management.git
-cd simple-task-management
+git clone https://github.com/TebogoYungMercykay/Simple-Task-Manager-System.git
+cd Simple-Task-Manager-System
 make clean && make
 make run
 ```
