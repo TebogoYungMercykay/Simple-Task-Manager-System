@@ -25,10 +25,13 @@ TaskManager<T>::TaskManager(std::string fileName) {
         std::stringstream priorityStream(priorityString);
         int priorityValue;
         priorityStream >> priorityValue;
-        
         bool repeatValue = (repeatString == "True");
-        
-        Task<T>* newTask = new Task<T>(priorityValue, descriptionValue, repeatValue, dataValue);
+
+        T data;
+        std::stringstream dataStream(dataValue);
+        dataStream >> data;
+
+        Task<T>* newTask = new Task<T>(priorityValue, descriptionValue, repeatValue, data);
         todo->addTask(newTask);
         delete newTask;
     }
