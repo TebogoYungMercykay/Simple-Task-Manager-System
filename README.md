@@ -1,5 +1,3 @@
-Here is a README for a Simple Task Management System that uses Linked Lists, Circular and Doubly, as well as a Queue and Stack to manage tasks:
-
 # Simple Task Management System
 
 This is a simple task management system built using Python. It utilizes various data structures such as Linked Lists (both Circular and Doubly), a Queue, and a Stack to manage tasks.
