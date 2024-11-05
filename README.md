@@ -1,6 +1,6 @@
 # Simple Task Management System
 
-This is a simple task management system built using Python. It utilizes various data structures such as Linked Lists (both Circular and Doubly), a Queue, and a Stack to manage tasks.
+This is a simple task management system built using C++98. It utilizes various data structures such as Linked Lists (both Circular and Doubly), a Queue, and a Stack to manage tasks.
 
 ## Features
 
@@ -20,9 +20,9 @@ This is a simple task management system built using Python. It utilizes various 
 
 ## Getting Started
 
-1. **Prerequisites**: Ensure you have Python 3.x installed on your system.
+1. **Prerequisites**: Ensure you have a C++98 compatible compiler installed on your system.
 2. **Installation**: Clone the repository and navigate to the project directory in your terminal.
-3. **Usage**: Run the main script to start the task management system.
+3. **Usage**: Compile the main script and run the executable to start the task management system.
 
 ```
 git clone https://github.com/TebogoYungMercykay/Simple-Task-Manager-System.git
