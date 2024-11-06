@@ -21,40 +21,40 @@ int main() {
 }
 
 void testTaskManager() {
-    // TaskManager<std::string> taskManager("tasks.txt");
+    TaskManager<std::string> taskManager("tasks.txt");
 
-    // Todo<std::string>* todo = taskManager.getTodo();
-    // std::cout << "Todo List:" << std::endl;
-    // std::cout << todo->doTasks() << std::endl;
+    Todo<std::string>* todo = taskManager.getTodo();
+    std::cout << "Todo List:" << std::endl;
+    std::cout << todo->doTasks() << std::endl;
 
-    // // Member Functions
+    // Member Functions
 
     std::cout << "=== Setting Priority ===" << std::endl;
-    // taskManager.setPriority();
-    // std::cout << "=== Setting Weekly Tasks ===" << std::endl;
-    // taskManager.setWeeklyTasks();
-    // std::cout << "=== Completing Weekly Tasks ===" << std::endl;
-    // taskManager.doWeekly(2);
-    // std::cout << "=== Completing Priority Tasks ===" << std::endl;
-    // taskManager.doPriority(4);
-    // std::cout << "=== Undoing Tasks ===" << std::endl;
-    // taskManager.undoTasks(false);
+    taskManager.setPriority();
+    std::cout << "=== Setting Weekly Tasks ===" << std::endl;
+    taskManager.setWeeklyTasks();
+    std::cout << "=== Completing Weekly Tasks ===" << std::endl;
+    taskManager.doWeekly(2);
+    std::cout << "=== Completing Priority Tasks ===" << std::endl;
+    taskManager.doPriority(4);
+    std::cout << "=== Undoing Tasks ===" << std::endl;
+    taskManager.undoTasks(false);
 
-    // Task<std::string>* current;
-    // WeeklyTasks<std::string>* weekly = taskManager.getWeekly();
-    // current = weekly->getHead();
-    // std::cout << "Weekly Tasks:" << std::endl;
-    // std::cout << weekly->doTasks() << std::endl;
+    Task<std::string>* current;
+    WeeklyTasks<std::string>* weekly = taskManager.getWeekly();
+    current = weekly->getHead();
+    std::cout << "Weekly Tasks:" << std::endl;
+    std::cout << weekly->doTasks() << std::endl;
 
-    // PriorityList<std::string>* priority = taskManager.getPriority();
-    // current = priority->getHead();
-    // std::cout << "Priority List:" << std::endl;
-    // std::cout << priority->doTasks() << std::endl;
+    PriorityList<std::string>* priority = taskManager.getPriority();
+    current = priority->getHead();
+    std::cout << "Priority List:" << std::endl;
+    std::cout << priority->doTasks() << std::endl;
 
-    // History<std::string>* history = taskManager.getHistory();
-    // current = history->getHead();
-    // std::cout << "History:" << std::endl;
-    // std::cout << history->doTasks() << std::endl;
+    History<std::string>* history = taskManager.getHistory();
+    current = history->getHead();
+    std::cout << "History:" << std::endl;
+    std::cout << history->doTasks() << std::endl;
 }
 
 void testTask() {
